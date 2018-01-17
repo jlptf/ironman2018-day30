@@ -1,0 +1,17 @@
+#####################################
+# 2018 ithome ironman
+# Author: James Lu
+# Topic: k8s 不自賞 - Day 30 鐵人達成
+# Url: https://ithelp.ithome.com.tw/articles/10197352
+# Licence: MIT
+#####################################
+
+apiVersion: extensions/v1beta1
+kind: Ingress
+metadata:
+  name: ithome-ingress
+  namespace: production
+spec:
+  backend:
+    serviceName: ithome
+    servicePort: 80

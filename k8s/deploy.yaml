@@ -1,0 +1,38 @@
+#####################################
+# 2018 ithome ironman
+# Author: James Lu
+# Topic: k8s 不自賞 - Day 30 鐵人達成
+# Url: https://ithelp.ithome.com.tw/articles/10197352
+# Licence: MIT
+#####################################
+
+apiVersion: extensions/v1beta1
+kind: Deployment
+metadata:
+  name: ithome
+spec:
+  replicas: 1
+  template:
+    metadata:
+      name: ithome
+      labels:
+        app: ithome
+        env: current
+    spec:
+      containers:
+      - name: ithome
+        image: gcr.io/ithome-image
+        resources:
+          limits:
+            memory: 0
+            cpu: 0
+        imagePullPolicy: Always
+        env:
+        - name: SERVER_PORT
+          value: "80"
+        - name: DB_SERVER
+          value: "mongodb-svc"
+        ports:
+        - containerPort: 80
+          protocol: TCP
+      restartPolicy: Always
